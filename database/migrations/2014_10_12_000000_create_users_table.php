@@ -14,10 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+            $table->id(); // уникальное число для каждого пользователя
+            $table->string('username')->unique();
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            /*значит, что нельзя один и тот же емеил 2 раза в базу данных
+             * я не буду удалять этот параметр и в дз сделаю регистрацию через него
+             * (если получится...)
+             * */
+
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
